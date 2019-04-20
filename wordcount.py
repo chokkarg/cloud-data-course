@@ -9,8 +9,7 @@ spark = SparkSession\
         .appName("CountUniqueWords")\
         .getOrCreate()
 
-lines = spark.read.text("gs://gc-cluster-dataproc/
-training/road-not-taken.txt").rdd.map(lambda x: x[0])
+lines = spark.read.text("gs://course-bucket1/road-not-taken.txt").rdd.map(lambda x: x[0])
 counts = lines.flatMap(lambda x: x.split(' ')) \
                   .filter(lambda x: re.sub('[^a-zA-Z]+', '', x)) \
                   .filter(lambda x: len(x)>1 ) \
